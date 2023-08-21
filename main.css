@@ -1,0 +1,274 @@
+/* 白天 */
+:root {
+    --font-color: #090821;
+    --bg-color: #ffffff;
+    --afont-color: #006666;
+    --dbg-color: rgba(0, 0, 0, 0.1);
+    --dbgh-color: rgba(0, 0, 0, 0.2);
+    --dbga-color: rgba(0, 0, 0, 0.3);
+    
+}
+
+/* 黑天 */
+[data-theme="dark"] {
+    --font-color: #f8f8f2;
+    --bg-color: #111;
+    --afont-color: #3cefff;
+    --dbg-color: rgba(255, 255, 255, 0.1);
+    --dbgh-color: rgba(255, 255, 255, 0.2);
+    --dbga-color: rgba(255, 255, 255, 0.3);
+}
+
+* {
+    box-sizing: border-box;
+    outline: 0;
+    border: 0;
+}
+
+/* 滚动条长宽*/
+::-webkit-scrollbar {
+    width:10px;
+    height: 4px;
+}
+
+/* 滚动条样子 静止 */
+::-webkit-scrollbar-thumb {
+    background: var(--dbg-color);
+    border-radius: 8px;
+}
+
+/* 滚动条样子 悬空 */
+::-webkit-scrollbar-thumb:hover {
+    background: var(--dbgh-color);
+}
+
+/* 滚动条样子 移动 */
+::-webkit-scrollbar-thumb:active {
+    background: var(--dbga-color);
+}
+
+/* 占位符 */
+::placeholder {
+    color: var(--font-color);
+}
+
+/* 文本框选中背景 */
+::selection {
+    background: #c6d5dd;
+
+}
+
+
+/* 整体设置 */
+body {
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+	background-image: url(images/rt.png);
+	background-position: right 3% center;
+	background-repeat: no-repeat;
+                background-size:600px 150px;
+    background-color: var(--bg-color);
+    color: var(--font-color);
+    font-size: 18px;
+	/* 字体种类 */
+    font-family: "Roboto Mono", "SF Mono", "Lucida Console", Monaco, monospace;
+	/* 字和下划线距离 */
+    line-height: 2;
+	/* ******************************不会 */
+    animation: fadein 0.2s;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+/* 	禁止选择右侧文本内容 */
+    -webkit-user-select: none;
+     user-select: none;
+}
+
+/* 页面盒子 */
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+/* 页眉页脚 */
+footer,
+header {
+    z-index: 1;
+    display: flex;
+	/* 内边距上下 左右 */
+    padding: 8px 16px;
+	/* 设置字体粗细 */
+    font-weight: 700;
+   align-items: center;
+}
+
+/* 工具栏水平设置 */
+.tools {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+/* 工具栏 按钮悬空触摸 */
+.tools button:hover {
+    background-color: var(--afont-color);
+    border-radius: 5px;
+    color: var(--bg-color);
+}
+
+/* 工具栏 文字间距 */
+.tools span {
+    padding: 0px 8px;
+}
+
+
+.file,
+button,
+.clear {
+    padding: 8px 16px;
+    background-color: transparent;
+    color: var(--afont-color);
+    font-weight: 700;
+    font-size: 18px;
+    font-family: "Roboto Mono", "SF Mono", "Lucida Console", Monaco, monospace;
+    cursor: pointer;
+}
+
+/* 按钮被禁用时 */
+button[disabled] {
+	/* 透明度 */
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* 鼠标悬停表示可选择 */
+.trigger {
+    cursor: pointer;
+	
+    color: var(--afont-color);
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    visibility: hidden;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    transition: all 0.2s;
+    transform: scale(1.05);
+}
+
+.show-modal {
+    visibility: visible;
+    opacity: 1;
+    transition: all 0.2s;
+    transform: scale(1);
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    overflow: auto;
+    padding: 16px 32px;
+    max-width: 80%;
+    max-height: 80%;
+    border-radius: 8px;
+    background-color: var(--bg-color);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+    transform: translate(-50%, -50%);
+}
+
+#SettingsContent h3 {
+      width: 14.5em;
+}
+
+
+input[type="file"] {
+    display: none;
+}
+
+
+.content {
+    display: flex;
+    overflow: hidden;
+    flex-grow: 1;
+}
+
+#MathJax_Message {
+    display: none;
+}
+
+textarea {
+    z-index: 0;
+    display: flex;
+    padding: 16px;
+    width: 50vw;
+    height: 100%;
+	background-image: url(images/xiaohui3.png);
+	background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 40%;
+    background-color: var(--bg-color);
+    color: var(--font-color);
+    font-weight: 700;
+    font-size: 18px;
+    font-family: "Roboto Mono", "SF Mono", "Lucida Console", Monaco, monospace;
+    line-height: 2;
+    resize: none;
+    transition: width 0.2s, padding 0.4s;
+    flex-grow: 1;
+}
+
+#editor {
+    border-right: 2px dashed var(--afont-color);
+}
+#getm,#viewer{
+    -webkit-overflow-scrolling: touch;
+}
+
+.markdown {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    padding: 16px;
+    counter-reset: line;
+    font-family: "Segoe UI", "Arial", "Roboto", "Noto", sans-serif;
+    transition: width 0.2s, padding 0.4s;
+    flex-grow: 1;
+}
+
+
+
+h1,
+h2 {
+    margin: 4px 0;
+    counter-increment: line;
+}
+
+h1:hover::after,
+h2:hover::after
+ {
+    display: inline-block;
+    padding-left: 8px;
+    content: "" counter(line);
+    opacity: 0.5;
+}
+
+h1,
+h2 {
+    border-bottom: 2px solid var(--dbg-color);
+}
+
+
+
+
